@@ -7,6 +7,7 @@ type DataHash = {
 	'変更前': string
 	'変更後': string
 	'変更日': string
+	'典拠': string
 }
 
 /**
