@@ -1,0 +1,33 @@
+{
+  "name": "merged-town-names",
+  "version": "0.0.9",
+  "description": "市町村合併などにより消滅した旧地名と新地名の対応表",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "rimraf ./publish && ts-node ./src/main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YUUKIToriyama/merged-town-names.git"
+  },
+  "keywords": [
+    "japanese-address"
+  ],
+  "author": "YUUKIToriyama <github@toriyama.dev>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YUUKIToriyama/merged-town-names/issues"
+  },
+  "homepage": "https://github.com/YUUKIToriyama/merged-town-names#readme",
+  "dependencies": {
+    "ts-node": "^10.2.1"
+  },
+  "devDependencies": {
+    "@types/progress": "^2.0.5",
+    "csv-parse": "^4.16.3",
+    "progress": "^2.0.3",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.3"
+  }
+}
