@@ -4,7 +4,7 @@
   "description": "市町村合併などにより消滅した旧地名と新地名の対応表",
   "main": "dist/main.js",
   "scripts": {
-    "build": "rimraf ./publish && ts-node ./src/main.ts",
+    "build:v1": "rimraf ./publish && ts-node ./src/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
