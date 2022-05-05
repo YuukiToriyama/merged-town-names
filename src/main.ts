@@ -12,22 +12,22 @@ type DataHash = {
 
 /**
  * ./data/にあるCSVの一覧を返す
- * @returns ファイルの一覧
+ * @returns ファイルのパスの配列
  */
-const listupFiles = async () => {
-	const files = await fs.readdir("./data").catch(error => {
+const listFiles = async (): Promise<string[]> => {
+	const filenames = await fs.readdir("./data").catch(error => {
 		throw Error(error);
 	});
-	return files.map(file => "./data/" + file);
+	return filenames.map(filename => `./data/${filename}`);
 }
 
 /**
- * JSONを作成
- * @param fileDir CSVファイルのパス
+ * CSVファイルをJSONに変換
+ * @param filePath CSVファイルのパス
  * @returns JSON
  */
-const parseCSV = async (fileDir: string) => {
-	const file = await fs.readFile(fileDir);
+const parseCSV = async (filePath: string): Promise<DataHash[]> => {
+	const file = await fs.readFile(filePath);
 	const parsedCSV: DataHash[] = parse(file, {
 		columns: true, // 一行目を見てハッシュに変換
 		skipEmptyLines: true // 空行がある場合はスキップ
@@ -54,16 +54,16 @@ const generateJSON = async (parsedCSV: DataHash[]) => {
 		}).catch(error => {
 			throw error;
 		});
-	})
+	});
 }
 
 (async () => {
 	await fs.mkdir("./publish").catch(() => {
 		return true;
 	});
-	const fileList = await listupFiles();
-	for (let fileDir of fileList) {
-		const parsedCSV = await parseCSV(fileDir);
+	const filePaths = await listFiles();
+	for (let filePath of filePaths) {
+		const parsedCSV = await parseCSV(filePath);
 		generateJSON(parsedCSV);
 	}
 })();
